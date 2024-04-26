@@ -1,0 +1,112 @@
+.main {
+  margin: 1rem;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex-grow: 1;
+  margin-bottom: 3rem;
+
+}
+
+.cardMenu {
+  margin-right: 1rem;
+  background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+  height: 96vh;
+  color: white;
+  min-width: 240px;
+}
+
+.menuItemsContainer{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  height: 80vh;
+}
+
+.activated{
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-radius: 5px;
+  background: rgb(63,90,183);
+  background: linear-gradient(90deg, rgba(63,90,183,1) 0%, rgba(59,91,204,1) 44%, rgba(63,90,183,1) 100%);
+
+}
+
+.menuItem {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.settingMenu{
+  margin-left: 1rem;
+  margin-top: auto;
+}
+
+.setActivated{
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-radius: 5px;
+  background: rgb(63,90,183);
+  background: linear-gradient(90deg, rgba(63,90,183,1) 0%, rgba(59,91,204,1) 44%, rgba(63,90,183,1) 100%);
+
+}
+
+
+/* Container for the grid */
+.imageGrid {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the gap between images */
+
+}
+
+/* Image styles */
+.imagePreview {
+  flex: 1 1 200px; /* Adjust 200px to your desired width */
+  max-width: 100%; /* Ensure images don't exceed their container width */
+  margin-bottom: 1rem;
+}
+  
+
+.mobileMenu {
+  display: none;
+}
+
+.closeMenu{
+  display: none;
+}
+
+.showOnMobile{
+  display: block;
+}
+
+@media (max-width: 1080px) {
+  .hiddenOnMobile {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: inline;
+    margin-right: 3rem;
+  }
+
+  .closeMenu {
+    display: flex;
+    color: #fff;
+  }
+  
+}
+

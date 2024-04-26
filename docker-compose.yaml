@@ -1,0 +1,12 @@
+services:
+  # tesseract:
+  #   container_name: tesseract
+  #   image: lgdd/tess4j-rest:latest
+  #   ports:
+  #     - 8080:8000
+  
+  solr:
+    container_name: solr
+    image: solr
+    ports:
+      - 8983:8983

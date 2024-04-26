@@ -1,0 +1,18 @@
+sudo apt remove --autoremove tesseract-ocr tesseract-ocr-*
+sudo add-apt-repository ppa:alex-p/tesseract-ocr5
+sudo apt update
+sudo apt install tesseract-ocr
+tesseract --version
+
+sudo apt install tesseract-ocr-por -y
+sudo apt install tesseract-ocr-spa -y
+sudo apt install tesseract-ocr-fra -y
+
+tesseract ruta_de_imagen stdout -l spa+eng
+
+
+cd /mnt/c/Users/guaze/Documents/Projects/ePaperless/ePaperless_be
+source venv/bin/activate 
+pip freeze > requirements.txt
+docker-compose up -d
+uvicorn main:app --reload
