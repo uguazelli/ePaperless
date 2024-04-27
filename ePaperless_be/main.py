@@ -1,17 +1,22 @@
 import uvicorn
 import os
 import asyncio
-import util.upload_to_s3 as s3
+
 from typing import List
 
-from fastapi import FastAPI, UploadFile
+from auth import validate_api_key 
+from fastapi import FastAPI, UploadFile, Depends
 from fastapi.responses import HTMLResponse
 from util.text_extraction import extract_text_from_document
 from util.task_scheduler import periodic_upload_check
-
+from util.solr import post
 
 
 app = FastAPI()
+
+@app.get("/client-upload")
+async def protected_endpoint(api_key: str = Depends(validate_api_key)):  # Use the dependency if you have auth.py
+    return {"message": "Access granted!"}
 
 
 @app.on_event("startup")
@@ -21,6 +26,10 @@ async def startup_event():
 
 @app.get("/")
 def read_root():
+    print("Start")
+    p = post("filename", "extracted_text", "file_extension", "file_metadata")
+    print("result: ", p)
+    print("finished")
     return {"Message": "ePaperless, status ok"}
 
 
@@ -43,25 +52,29 @@ def upload_aws_s3():
     return {"Message": "Upload to S3 finished", "OCR": ocr}
 
 
-@app.post("/uploadfiles/")
+@app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])
 async def create_upload_files(files: List[UploadFile]):
     # Save the files to a folder
     folder = "uploads/"
-    os.makedirs(folder, exist_ok=True)  #
-        
+    os.makedirs(folder, exist_ok=True)  # Ensure the folder exists, create if not
+
+    filenames = []
     for file in files:
         try:
             print(file)
             file_path = os.path.join(folder, file.filename)
-            with open(file_path, "wb") as buffer:
-                buffer.write(await file.read())
+            with open(file_path, "wb") as buffer:  # Use synchronous context manager
+                buffer.write(await file.read())  # Await reading from the file and write to buffer
 
         except Exception as error:
-            print("An error occurred:", error) # An error occurred: name 'x' is not defined
+            print("An error occurred:", error)
 
         finally:
-            file.file.close()
-    return {"filenames": [file.filename for file in files]}
+            # No need to close file as it's opened using synchronous open
+            filenames.append(file.filename)
+
+    return {"filenames": filenames}
+
 
 @app.get("/upload")
 async def main():

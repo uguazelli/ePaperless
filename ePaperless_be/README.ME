@@ -16,3 +16,5 @@ source venv/bin/activate
 pip freeze > requirements.txt
 docker-compose up -d
 uvicorn main:app --reload
+
+#curl -X GET "http://localhost:8000/client-upload" -H "X-API-Key: your_api_key_here"

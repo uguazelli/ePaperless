@@ -5,8 +5,30 @@ services:
   #   ports:
   #     - 8080:8000
   
+  postgres:
+    container_name: postgres
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/dataa
+    environment:
+      - POSTGRES_PASSWORD=VH3FJ!wKMtFiDv
+      - POSTGRES_USER=ePaperless
+      - POSTGRES_DB=epaperless_db
+      
   solr:
     container_name: solr
     image: solr
     ports:
       - 8983:8983
+    volumes:
+      - solr_data:/opt/solr/server/solr/ePaperless
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - ePaperless
+    
+volumes:
+  solr_data:
+  postgres_data:

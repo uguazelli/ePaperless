@@ -16,3 +16,71 @@
 2024-04-24 09:16:43 modalidade.jpg None
 2024-04-24 09:16:44 Mulesoft Support Case Update.pdf None
 2024-04-24 09:16:47 preAlert-728373900456.pdf None
+2024-04-26 19:37:14 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-26 19:40:52 preAlert-728373900456.pdf None
+2024-04-26 19:49:10 1713442948981.pdf None
+2024-04-27 18:16:18 .env None
+2024-04-27 18:20:30 .env None
+2024-04-27 18:26:46 1713442948981.pdf None
+2024-04-27 18:26:47 alphabet.png None
+2024-04-27 18:26:48 docker-compose.yml None
+2024-04-27 18:26:49 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-27 18:26:50 Factura.pdf None
+2024-04-27 18:26:51 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-27 18:26:51 javascript.png None
+2024-04-27 18:26:53 mazambique.jpg None
+2024-04-27 18:26:55 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-27 18:26:57 modalidade.jpg None
+2024-04-27 18:26:58 Mulesoft Support Case Update.pdf None
+2024-04-27 18:27:02 preAlert-728373900456.pdf None
+2024-04-27 18:27:03 PXL_20240422_200649727 (1).jpg None
+2024-04-27 18:27:05 PXL_20240422_200649727 (2).jpg None
+2024-04-27 18:27:07 PXL_20240422_200649727.jpg None
+2024-04-27 18:29:09 alphabet.png None
+2024-04-27 18:29:11 docker-compose.yml None
+2024-04-27 18:29:12 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-27 18:29:13 javascript.png None
+2024-04-27 18:29:15 mazambique.jpg None
+2024-04-27 18:29:16 modalidade.jpg None
+2024-04-27 18:29:18 preAlert-728373900456.pdf None
+2024-04-27 18:29:53 .env None
+2024-04-27 18:29:55 1713442948981.pdf None
+2024-04-27 18:29:55 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-27 18:29:56 Factura.pdf None
+2024-04-27 18:29:57 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-27 18:29:59 Mulesoft Support Case Update.pdf None
+2024-04-27 18:30:04 PXL_20240422_200649727 (1).jpg None
+2024-04-27 18:30:06 PXL_20240422_200649727 (2).jpg None
+2024-04-27 18:30:08 PXL_20240422_200649727.jpg None
+2024-04-27 18:42:15 .env None
+2024-04-27 18:42:16 1713442948981.pdf None
+2024-04-27 18:42:17 alphabet.png None
+2024-04-27 18:42:18 docker-compose.yml None
+2024-04-27 18:42:20 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-27 18:42:21 Factura.pdf None
+2024-04-27 18:42:22 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-27 18:42:22 javascript.png None
+2024-04-27 18:42:26 mazambique.jpg None
+2024-04-27 18:42:28 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-27 18:42:30 modalidade.jpg None
+2024-04-27 18:42:31 Mulesoft Support Case Update.pdf None
+2024-04-27 18:42:36 preAlert-728373900456.pdf None
+2024-04-27 18:42:36 PXL_20240422_200649727 (1).jpg None
+2024-04-27 18:42:38 PXL_20240422_200649727 (2).jpg None
+2024-04-27 18:42:40 PXL_20240422_200649727.jpg None
+2024-04-27 18:46:12 .env None
+2024-04-27 18:46:13 1713442948981.pdf None
+2024-04-27 18:46:14 alphabet.png None
+2024-04-27 18:46:16 docker-compose.yml None
+2024-04-27 18:46:17 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-27 18:46:18 Factura.pdf None
+2024-04-27 18:46:19 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-27 18:46:19 javascript.png None
+2024-04-27 18:46:22 mazambique.jpg None
+2024-04-27 18:46:23 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-27 18:46:25 modalidade.jpg None
+2024-04-27 18:46:26 Mulesoft Support Case Update.pdf None
+2024-04-27 18:46:31 preAlert-728373900456.pdf None
+2024-04-27 18:46:31 PXL_20240422_200649727 (1).jpg None
+2024-04-27 18:46:34 PXL_20240422_200649727 (2).jpg None
+2024-04-27 18:46:36 PXL_20240422_200649727.jpg None

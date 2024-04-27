@@ -49,6 +49,8 @@ pydantic==2.7.1
 pydantic_core==2.18.2
 PyGObject==3.42.1
 PyJWT==2.3.0
+PyMuPDF==1.24.2
+PyMuPDFb==1.24.1
 pyparsing==2.4.7
 pytesseract==0.3.10
 python-apt==2.4.0+ubuntu3

@@ -8,15 +8,18 @@ from dotenv import load_dotenv
 load_dotenv()
 SOLR_URL = os.getenv("SOLR_URL")
 
-def solr(file_name, OCR, tags,meta):
-    result = requests.post(SOLR_URL, json={
-                "id": uuid.uuid4(),
+def post(file_name, sin="N/A", extracted_text="N/A", content_type="N/A", tags="N/A", meta="N/A", description="N/A"):
+    result = requests.post(SOLR_URL, json=[{
+                "id": str(uuid.uuid4()),
                 "doc_name": file_name,
-                "extracted_text": OCR,
-                "content_type": "",
+                "sin": sin,
+                "extracted_text": extracted_text,
+                "content_type": content_type,
                 "upload_date": time.time(),
                 "creator": "",
-                "tags": "",
-                "description": ""
-    })
+                "tags": tags,
+                "meta": meta,
+                "description": description
+    }])
     print(result)
+    return result

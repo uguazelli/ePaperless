@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to the project directory
-cd /mnt/c/Users/guaze/Documents/Projects/ePaperless/ePaperless_be || {
+cd ePaperless_be || {
   echo "Error: Could not change directory to /mnt/c/Users/guaze/Documents/Projects/ePaperless/ePaperless_be"
   exit 1
 }
@@ -27,11 +27,9 @@ docker-compose up -d || {
 # Wait for all services to be healthy
 docker-compose wait
 
-# Create a Solr core (optional)
-echo "# Create a Solr core"
-docker exec -it --user solr solr bin/solr create_core -c solr_core
-
-echo "sol_core created"
+echo "Postgres docker created"
+echo "Solr docker created"
+echo "'ePaperless' Solr core created"
 
 # Kill process on port 8000 (optional)
 echo "# Killing process on port 8000 (if any)"
