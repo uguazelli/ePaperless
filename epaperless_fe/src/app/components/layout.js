@@ -19,7 +19,7 @@ const Layout = ({ workspace }) => {
           <LeftMenu toogleMenu={toogleMenu} />
         </div>
         {/* Main area */}
-        <div>
+        <div style={{ width: "100%" }}>
           <div className={styles.content}>
             <CurrentPageDisplay toogleMenu={toogleMenu} />
             <SearchMenu />

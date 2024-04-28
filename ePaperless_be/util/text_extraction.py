@@ -28,7 +28,7 @@ def extract_text_from_document(file_path):
     
     # Extract text from PowerPoint presentations
     elif file_path.lower().endswith(('.ppt', '.pptx')):
-        prs = python-pptx.Presentation(file_path)
+        prs = pptx.Presentation(file_path)
         for slide in prs.slides:
             for shape in slide.shapes:
                 if hasattr(shape, "text"):

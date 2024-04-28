@@ -3,7 +3,8 @@ import { Card } from "antd";
 import { RobotOutlined, CloseCircleFilled } from "@ant-design/icons";
 
 const LeftMenu = ({ toogleMenu }) => {
-  const url = "doc";
+  const pathParts = window.location.pathname.split("/");
+  const currentPage = pathParts[pathParts.length - 1];
 
   const Header = (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -22,19 +23,32 @@ const LeftMenu = ({ toogleMenu }) => {
       style={{ width: 300, fontSize: "1rem" }}
     >
       <div className={styles.menuItemsContainer}>
-        <div className={url == "dash" ? styles.activated : styles.menuItem}>
+        <a
+          href="/dashboard"
+          className={
+            currentPage == "dashboard" ? styles.activated : styles.menuItem
+          }
+        >
           <p>Dashboard</p>
-        </div>
+        </a>
 
-        <div className={url == "doc" ? styles.activated : styles.menuItem}>
+        <a
+          href="/documents"
+          className={
+            currentPage == "documents" ? styles.activated : styles.menuItem
+          }
+        >
           <p>Documents</p>
-        </div>
+        </a>
 
-        <div
-          className={url == "set" ? styles.setActivated : styles.settingMenu}
+        <a
+          href="/settings"
+          className={
+            currentPage == "settings" ? styles.setActivated : styles.settingMenu
+          }
         >
           <p>Settings</p>
-        </div>
+        </a>
       </div>
     </Card>
   );

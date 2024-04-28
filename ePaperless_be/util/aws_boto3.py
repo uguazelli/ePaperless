@@ -20,22 +20,20 @@ def get_s3_client():
 
 def upload(file_path, file_name):
     print('Upload started')
-    
     response = get_s3_client().upload_file(file_path, AWS_S3, file_name)
-
     print(f'upload_log_to_aws response: {response}')
     return response
 
 
 def get_objects():
     try:
-        objects = get_s3_client().list_objects_v2(Bucket="epaperless")['Contents']
-        object_keys = [obj['Key'] for obj in objects]
+        response = get_s3_client().list_objects_v2(Bucket="epaperless", Prefix='', Delimiter='/')
+        object_keys = [obj['Key'] for obj in response.get('Contents', []) if not obj['Key'].startswith("thumbnail_")]
     except Exception as e:
         print(f"Error retrieving objects from bucket epaperless: {e}")
         return []
-
     return object_keys
+
 
 def generate_presigned_url(object_key, expiration=3600):
     try:
@@ -55,7 +53,11 @@ def get_objects_with_presigned_urls():
     object_urls = []
     for object_key in object_keys:
         url = generate_presigned_url(object_key)
-        if url:
-            object_urls.append({"object_key": object_key, "url": url})  
+        # Generating thumbnail key with original extension
+        thumbnail_key = f"thumbnail_{object_key.rsplit('.', 1)[0]}.jpg"
+        thumbnail_url = generate_presigned_url(thumbnail_key)
+        if url and thumbnail_url:
+            object_urls.append({"object_key": object_key, "url": url, "thumbnail_url": thumbnail_url})  
     return object_urls
+
 

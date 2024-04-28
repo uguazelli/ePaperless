@@ -3,7 +3,7 @@ import { Card } from "antd";
 const { Meta } = Card;
 
 const ImagePreview = ({ object }) => {
-  const urlLink = <a href={object.url}>open</a>;
+  const urlLink = <a href={object.url}>Download</a>;
   return (
     <div className={styles.imagePreview}>
       <Card
@@ -14,7 +14,8 @@ const ImagePreview = ({ object }) => {
         cover={
           <img
             alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            src={object.thumbnail_url}
+            style={{ width: "200px", height: "200px" }}
           />
         }
       >

@@ -39,6 +39,7 @@ async def protected_endpoint(api_key: str = Depends(validate_api_key)):  # Use t
 @app.on_event("startup")
 async def startup_event():
     asyncio.create_task(periodic_upload_check())
+    
 
 
 @app.get("/")
