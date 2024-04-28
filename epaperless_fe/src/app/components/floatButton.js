@@ -1,11 +1,24 @@
-"use client";
+import React from "react";
+import dynamic from "next/dynamic";
 import "react-tiny-fab/dist/styles.css";
-import { Fab, Action } from "react-tiny-fab";
 import { PlusOutlined } from "@ant-design/icons";
 import { FileAddOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
+// Use dynamic import for Fab and Action components with ssr: false, this will avoid ReferenceError: window is not defined
+const Fab = dynamic(() => import("react-tiny-fab").then((mod) => mod.Fab), {
+  ssr: false,
+});
+const Action = dynamic(
+  () => import("react-tiny-fab").then((mod) => mod.Action),
+  {
+    ssr: false,
+  }
+);
+
+// Define FloatButton component
 const FloatButton = () => {
+  // Define styles
   const styles = {
     mainButtonStyles: {
       backgroundColor: "purple",
@@ -22,6 +35,7 @@ const FloatButton = () => {
     },
   };
 
+  // Render the FloatButton component
   return (
     <Fab
       mainButtonStyles={styles.mainButtonStyles}
@@ -39,4 +53,4 @@ const FloatButton = () => {
   );
 };
 
-export default FloatButton;
+export default FloatButton; // Export FloatButton component

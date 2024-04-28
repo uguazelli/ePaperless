@@ -3,8 +3,12 @@ import { Card } from "antd";
 import { RobotOutlined, CloseCircleFilled } from "@ant-design/icons";
 
 const LeftMenu = ({ toogleMenu }) => {
-  const pathParts = window.location.pathname.split("/");
-  const currentPage = pathParts[pathParts.length - 1];
+  let currentPage = "";
+
+  if (typeof window !== "undefined") {
+    const pathParts = window.location.pathname.split("/");
+    currentPage = pathParts[pathParts.length - 1];
+  }
 
   const Header = (
     <div style={{ display: "flex", justifyContent: "space-between" }}>

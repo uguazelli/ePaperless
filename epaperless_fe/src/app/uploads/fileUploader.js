@@ -21,22 +21,23 @@ function FileUpload() {
         formData.append("files", file);
       }
 
-      const response = await fetch("http://localhost:8000/uploadfiles", {
-        method: "POST",
-        body: formData,
-        headers: {
-          // Add your API key if required
-          //'X-API-Key': 'your-api-key'
-          "X-API-Key": "5JdDbsLLgnG*pAi8t%qG6r6",
-        },
-        // Report upload progress
-        onUploadProgress: (progressEvent) => {
-          const progress = Math.round(
-            (progressEvent.loaded / progressEvent.total) * 100
-          );
-          setUploadProgress(progress);
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_EPAPERLESS_HOST}/uploadfiles`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-API-Key": process.env.NEXT_PUBLIC_API_KEY,
+          },
+          // Report upload progress
+          onUploadProgress: (progressEvent) => {
+            const progress = Math.round(
+              (progressEvent.loaded / progressEvent.total) * 100
+            );
+            setUploadProgress(progress);
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Upload failed");

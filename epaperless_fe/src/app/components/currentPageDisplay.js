@@ -2,8 +2,13 @@ import { HomeOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import styles from "@/app/page.module.css";
 
 const CurrentPageDisplay = ({ toogleMenu }) => {
-  const pathParts = window.location.pathname.split("/");
-  const currentPage = pathParts[pathParts.length - 1];
+  let currentPage = "";
+
+  if (typeof window !== "undefined") {
+    const pathParts = window.location.pathname.split("/");
+    currentPage = pathParts[pathParts.length - 1];
+  }
+
   return (
     <div>
       <span className={styles.mobileMenu} onClick={toogleMenu}>

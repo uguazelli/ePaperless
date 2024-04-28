@@ -8,13 +8,14 @@ const ImageGrid = () => {
   useEffect(() => {
     const fetchObjects = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/objects");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_EPAPERLESS_HOST}/objects`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch objects");
         }
         const data = await response.json();
         setObjects(data); // Set the response data in the state
-        console.log(data);
       } catch (error) {
         console.error("Error fetching objects:", error);
       }
