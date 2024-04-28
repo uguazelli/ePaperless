@@ -4,6 +4,7 @@ import asyncio
 
 from typing import List
 
+from fastapi.middleware.cors import CORSMiddleware
 from auth import validate_api_key 
 from fastapi import FastAPI, UploadFile, Depends
 from fastapi.responses import HTMLResponse
@@ -13,6 +14,21 @@ from util.solr import post
 
 
 app = FastAPI()
+
+# Configure CORS settings
+origins = [
+    "http://localhost",
+    "http://localhost:3000",  # Allow requests from your React application
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["X-API-Key"],
+)
 
 @app.get("/client-upload")
 async def protected_endpoint(api_key: str = Depends(validate_api_key)):  # Use the dependency if you have auth.py

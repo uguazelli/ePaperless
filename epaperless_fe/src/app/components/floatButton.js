@@ -1,5 +1,8 @@
-import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
+import { Fab, Action } from "react-tiny-fab";
+import { PlusOutlined } from "@ant-design/icons";
+import { FileAddOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const FloatButton = () => {
   const styles = {
@@ -13,27 +16,23 @@ const FloatButton = () => {
     },
     mainStyle: { bottom: 0, right: 60 },
     actionStyle: {
-      backgroundColor: "purple",
+      backgroundColor: "green",
       borderRadius: 48,
     },
   };
+
   return (
     <Fab
       mainButtonStyles={styles.mainButtonStyles}
-      actionButtonStyles={styles.actionButtonStyles}
       style={styles.mainStyle}
-      icon={"+"}
+      icon={<PlusOutlined />}
       event={"hover"}
       alwaysShowTitle={true}
-      //   onClick={someFunctionForTheMainButton}
     >
-      <Action
-        text="Email"
-        style={styles.actionStyle}
-        onClick={console.log("email")}
-      />
-      <Action text="Help" onClick={console.log("help")}>
-        <i className="fa fa-help" />
+      <Action text="Add Documents" style={styles.actionStyle}>
+        <Link href="/uploads">
+          <FileAddOutlined />
+        </Link>
       </Action>
     </Fab>
   );
