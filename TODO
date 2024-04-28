@@ -1,0 +1,4 @@
+make upload async
+create env for front end
+
+generate thurbnail when uploading to s3

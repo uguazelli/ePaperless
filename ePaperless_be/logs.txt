@@ -84,3 +84,41 @@
 2024-04-27 18:46:31 PXL_20240422_200649727 (1).jpg None
 2024-04-27 18:46:34 PXL_20240422_200649727 (2).jpg None
 2024-04-27 18:46:36 PXL_20240422_200649727.jpg None
+2024-04-28 04:40:46 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-28 04:40:46 preAlert-728373900456.pdf None
+2024-04-28 04:45:07 alphabet.png None
+2024-04-28 04:45:09 PXL_20240422_200649727 (1).jpg None
+2024-04-28 04:45:11 PXL_20240422_200649727.jpg None
+2024-04-28 05:51:16 1713442948981.pdf None
+2024-04-28 06:03:48 .env None
+2024-04-28 06:03:49 1713442948981.pdf None
+2024-04-28 06:03:50 alphabet.png None
+2024-04-28 06:03:51 docker-compose.yml None
+2024-04-28 06:03:52 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-28 06:04:01 Factura.pdf None
+2024-04-28 06:04:02 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-28 06:04:03 javascript.png None
+2024-04-28 06:05:06 mazambique.jpg None
+2024-04-28 06:05:08 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-28 06:05:17 modalidade.jpg None
+2024-04-28 06:05:26 Mulesoft Support Case Update.pdf None
+2024-04-28 06:05:29 preAlert-728373900456.pdf None
+2024-04-28 06:05:30 PXL_20240422_200649727 (1).jpg None
+2024-04-28 06:05:32 PXL_20240422_200649727 (2).jpg None
+2024-04-28 06:05:34 PXL_20240422_200649727.jpg None
+2024-04-28 06:14:59 .env None
+2024-04-28 06:15:00 1713442948981.pdf None
+2024-04-28 06:15:00 alphabet.png None
+2024-04-28 06:15:02 docker-compose.yml None
+2024-04-28 06:15:03 Estado de cuenta Brubank [Ugo Augusto Gustavo Guazelli] [2024-03-01 al 2024-03-31].pdf None
+2024-04-28 06:15:04 Factura.pdf None
+2024-04-28 06:15:05 install-paperless-ngx-on-debian-12-bare-metal.pdf None
+2024-04-28 06:15:05 javascript.png None
+2024-04-28 06:15:07 mazambique.jpg None
+2024-04-28 06:15:08 MINUTA CONTRATO FRANQUIA V31 - Abril 2024.pdf None
+2024-04-28 06:15:10 modalidade.jpg None
+2024-04-28 06:15:11 Mulesoft Support Case Update.pdf None
+2024-04-28 06:15:15 preAlert-728373900456.pdf None
+2024-04-28 06:15:15 PXL_20240422_200649727 (1).jpg None
+2024-04-28 06:15:18 PXL_20240422_200649727 (2).jpg None
+2024-04-28 06:15:20 PXL_20240422_200649727.jpg None

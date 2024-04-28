@@ -1,9 +1,9 @@
 "use client";
 
 import Layout from "@/app/components/layout";
-import DragAndDrop from "./draggerPage";
+import DragAndDrop from "@/app/uploads/fileUploader";
 
-const Documents = () => {
+const FileUpload = () => {
   const workspace = (
     <div style={{ height: "20rem" }}>
       <DragAndDrop />
@@ -12,4 +12,4 @@ const Documents = () => {
   return <Layout workspace={workspace} />;
 };
 
-export default Documents;
+export default FileUpload;

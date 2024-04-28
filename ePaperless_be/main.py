@@ -2,7 +2,7 @@ import uvicorn
 import os
 import asyncio
 
-from typing import List
+from typing import List, Dict
 
 from fastapi.middleware.cors import CORSMiddleware
 from auth import validate_api_key 
@@ -11,6 +11,7 @@ from fastapi.responses import HTMLResponse
 from util.text_extraction import extract_text_from_document
 from util.task_scheduler import periodic_upload_check
 from util.solr import post
+from util.aws_boto3 import get_objects, get_objects_with_presigned_urls
 
 
 app = FastAPI()
@@ -64,8 +65,20 @@ def upload_aws_s3():
 
     ocr = extract_text_from_document(file_path)
   
-
     return {"Message": "Upload to S3 finished", "OCR": ocr}
+
+
+
+
+@app.get("/get_objects", response_model=List[Dict[str, str]])
+async def get_s3_objects():
+    objects = await get_objects()  # Call fetch_objects instead of get_objects
+    return objects
+
+@app.get("/objects", response_model=List[Dict[str, str]])
+def read_objects():
+    return get_objects_with_presigned_urls()
+
 
 
 @app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])

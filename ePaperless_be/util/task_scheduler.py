@@ -2,7 +2,7 @@ import os
 import asyncio
 
 from datetime import datetime
-from util.upload_to_s3 import upload
+from util.aws_boto3 import upload
 
 # Load environment variables from .env file
 from dotenv import load_dotenv

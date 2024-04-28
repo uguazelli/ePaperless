@@ -1,3 +1,4 @@
+"use client";
 import "react-tiny-fab/dist/styles.css";
 import { Fab, Action } from "react-tiny-fab";
 import { PlusOutlined } from "@ant-design/icons";

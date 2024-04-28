@@ -2,7 +2,8 @@ import styles from "@/app/page.module.css";
 import { Card } from "antd";
 const { Meta } = Card;
 
-const ImagePreview = () => {
+const ImagePreview = ({ object }) => {
+  const urlLink = <a href={object.url}>open</a>;
   return (
     <div className={styles.imagePreview}>
       <Card
@@ -17,7 +18,7 @@ const ImagePreview = () => {
           />
         }
       >
-        <Meta title="Europe Street beat" description="www.instagram.com" />
+        <Meta title={object.object_key} description={urlLink} />
       </Card>
     </div>
   );
