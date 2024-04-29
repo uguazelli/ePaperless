@@ -9,7 +9,7 @@ from auth import validate_api_key
 from fastapi import FastAPI, UploadFile, Depends
 from fastapi.responses import HTMLResponse
 from util.text_extraction import extract_text_from_document
-from util.task_scheduler import periodic_upload_check
+from util.task_scheduler import start_periodic_upload_check
 from util.solr import post
 from util.aws_boto3 import get_objects, get_objects_with_presigned_urls
 
@@ -38,7 +38,7 @@ async def protected_endpoint(api_key: str = Depends(validate_api_key)):  # Use t
 
 @app.on_event("startup")
 async def startup_event():
-    asyncio.create_task(periodic_upload_check())
+    asyncio.create_task(start_periodic_upload_check())
     
 
 

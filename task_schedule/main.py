@@ -3,20 +3,21 @@ import asyncio
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 from pdf2image import convert_from_path
-from util.aws_boto3 import upload
+from aws_boto3 import upload
 from pdf2image.exceptions import PDFPageCountError
-import threading
+
 
 # Load environment variables from .env file
 from dotenv import load_dotenv
 load_dotenv()
-
 LOG_FILE = os.getenv("LOG_FILE")
 UPLOADS_DIR = os.getenv("UPLOADS_DIR")
 
-def log_result(timestamp, filename, result):
+
+async def log_result(timestamp, filename, result):
     with open(LOG_FILE, "a") as f:
         f.write(f"{timestamp} {filename} {result}\n")
+        
 
 def create_image_thumbnail(image_path):
     with Image.open(image_path) as img:
@@ -27,6 +28,7 @@ def create_image_thumbnail(image_path):
         img.save(thumbnail_path, "JPEG")
         return thumbnail_path
 
+
 def create_pdf_thumbnail(pdf_path):
     pages = convert_from_path(pdf_path, 500)
     filename_without_ext = os.path.splitext(os.path.basename(pdf_path.lower()))[0]
@@ -34,7 +36,6 @@ def create_pdf_thumbnail(pdf_path):
     pages[0].thumbnail((128, 128))
     pages[0].convert("RGB").save(thumbnail_path, "JPEG")
     return thumbnail_path
-
 
 
 def create_text_thumbnail(text_path):
@@ -57,45 +58,51 @@ def create_text_thumbnail(text_path):
     return thumbnail_path
 
 
+async def process_file(filename):
+    file_path = os.path.join(UPLOADS_DIR, filename)
+    if os.path.isfile(file_path):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        result = await upload(file_path, filename)
+        await log_result(timestamp, filename, result)
+
+        # Create and upload a thumbnail
+        try:
+            if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+                thumbnail_path = create_image_thumbnail(file_path)
+            elif filename.lower().endswith('.pdf'):
+                thumbnail_path = create_pdf_thumbnail(file_path)
+            elif filename.lower().endswith(('.txt', '.json', '.yaml', '.env')):
+                thumbnail_path = create_text_thumbnail(file_path)
+            else:
+                thumbnail_path = "assets/placeholder.jpg"
+        except PDFPageCountError:
+            thumbnail_path = "assets/placeholder.jpg"
+
+        thumbnail_filename = f"thumbnail_{os.path.splitext(os.path.basename(filename))[0]}.jpg"
+        thumbnail_result = await upload(thumbnail_path, thumbnail_filename)
+        await log_result(timestamp, thumbnail_filename, thumbnail_result)
+        os.remove(file_path)
+        if thumbnail_path != "assets/placeholder.jpg":
+            os.remove(thumbnail_path)
+
 
 async def periodic_upload_check():
+    print("System is now listening to the folder for new files...")
     while True:
         if not os.path.exists(LOG_FILE):
             with open(LOG_FILE, "w") as f:
                 f.write("")
 
         for filename in os.listdir(UPLOADS_DIR):
-            file_path = os.path.join(UPLOADS_DIR, filename)
-            if os.path.isfile(file_path):
-                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                result = upload(file_path, filename)
-                log_result(timestamp, filename, result)
-
-                # Create and upload a thumbnail
-                try:
-                    if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-                        thumbnail_path = create_image_thumbnail(file_path)
-                    elif filename.lower().endswith('.pdf'):
-                        thumbnail_path = create_pdf_thumbnail(file_path)
-                    elif filename.lower().endswith(('.txt', '.json', '.yaml', '.env')):
-                        thumbnail_path = create_text_thumbnail(file_path)
-                    else:
-                        thumbnail_path = "assets/placeholder.jpg"
-                except PDFPageCountError:
-                    thumbnail_path = "assets/placeholder.jpg"
-
-                thumbnail_filename = f"thumbnail_{os.path.splitext(os.path.basename(filename))[0]}.jpg"
-                thumbnail_result = upload(thumbnail_path, thumbnail_filename)
-                log_result(timestamp, thumbnail_filename, thumbnail_result)
-                os.remove(file_path)
-                if thumbnail_path != "assets/placeholder.jpg":
-                    os.remove(thumbnail_path)
+            await process_file(filename)
 
         await asyncio.sleep(5)  # Check every 5 seconds
-
 
 
 async def start_periodic_upload_check():
     while True:
         await periodic_upload_check()
-        await asyncio.sleep(5)  # Adjust the sleep interval as needed
+
+
+if __name__ == "__main__":
+    asyncio.run(start_periodic_upload_check())

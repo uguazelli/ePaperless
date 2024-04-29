@@ -44,6 +44,7 @@ packaging==24.0
 pdf2image==1.17.0
 pdfminer.six==20191110
 pillow==10.3.0
+pycairo==1.26.0
 pycryptodome==3.20.0
 pydantic==2.7.1
 pydantic_core==2.18.2
