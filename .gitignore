@@ -166,3 +166,6 @@ web/.yarn/*
 
 # Asdf package manager
 /*/.tool-versions
+task_schedule/venv_upload/bin/python
+task_schedule/venv_upload/bin/python3
+task_schedule/venv_upload/bin/python3.10
