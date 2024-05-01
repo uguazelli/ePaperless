@@ -1,8 +1,34 @@
 #!/bin/bash
 
 
+# Starting docker
+
+echo "Starting docker containers"
+docker stop postgres
+docker stop meilisearch
+docker rm postgres
+docker rm meilisearch
+
+# Run docker-compose up -d and redirect stderr to a temporary file
+docker-compose up -d 2> /tmp/docker_error.txt
+
+# Wait for all services to be healthy
+docker-compose wait
+
+curl -X POST -H 'Content-type: application/xml' --data-binary '@/schema.xml' http://localhost:8983/solr/ePaperless/schema
+
+
+echo "Postgres docker created"
+echo "Solr docker created"
+echo "'ePaperless' Solr core created"
+
+
+# Starting the Backend
+
+
+# Change directory
 cd ../ePaperless_BE/ || {
-  echo "Error: Could not change directory to /mnt/c/Users/guaze/Documents/Projects/ePaperless/ePaperless_be"
+  echo "Error: Could not change directory to $dir"
   exit 1
 }
 
@@ -11,22 +37,6 @@ source venv/bin/activate || true  # Suppress potential errors if venv is not pre
 echo "Virtual environment activated"
 
 pip freeze > requirements.txt 2>/dev/null  # Redirect stderr to /dev/null to suppress potential output / to be removed in production
-
-pip install -r requirements.txt
-
-echo "Installed pip dependencies"
-
-echo "Starting docker containers"
-
-# Run docker-compose up -d and redirect stderr to a temporary file
-docker-compose up -d 2> /tmp/docker_error.txt
-
-# Wait for all services to be healthy
-docker-compose wait
-
-echo "Postgres docker created"
-echo "Solr docker created"
-echo "'ePaperless' Solr core created"
 
 
 # Kill process on port 8000 (optional)
@@ -103,7 +113,7 @@ uvicorn main:app --reload || {
 echo "runnng uvicorn"
 
 # Inform the user of successful execution
-echo "Successfully executed commands. ePaperless backend is running in the background."
+echo "Successfully executed commands. ePaperless backend is running."
 
 
 

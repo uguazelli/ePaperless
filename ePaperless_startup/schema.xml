@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="ePaperless" version="1.1">
+  <field name="id" type="string" indexed="true" stored="true" required="true"/>
+  <field name="doc_name" type="string" indexed="true" stored="true"/>
+  <field name="sin" type="string" indexed="true" stored="true"/>
+  <field name="extracted_text" type="text" indexed="true" stored="true"/>
+  <field name="content_type" type="string" indexed="false" stored="true"/>
+  <field name="upload_date" type="long" indexed="true" stored="true"/>
+  <field name="creator" type="string" indexed="false" stored="true"/>
+  <field name="tags" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="meta" type="string" indexed="false" stored="true"/>
+  <field name="description" type="string" indexed="false" stored="true"/>
+  <uniqueKey>
+    <field name="id"/>
+  </uniqueKey>
+</schema>

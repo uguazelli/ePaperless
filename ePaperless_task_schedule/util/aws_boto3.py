@@ -21,7 +21,7 @@ def get_s3_client():
     )
 
 
-async def upload(file_path, file_name):
+async def upload_to_s3(file_path, file_name):
     print('Upload started')
     s3_client = get_s3_client()
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
