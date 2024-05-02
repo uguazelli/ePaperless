@@ -1,13 +1,9 @@
 import { HomeOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import styles from "@/app/page.module.css";
+import useStore from "@/app/store";
 
 const CurrentPageDisplay = ({ toogleMenu }) => {
-  let currentPage = "";
-
-  if (typeof window !== "undefined") {
-    const pathParts = window.location.pathname.split("/");
-    currentPage = pathParts[pathParts.length - 1];
-  }
+  const currentPage = useStore((state) => state.currentPage);
 
   return (
     <div>

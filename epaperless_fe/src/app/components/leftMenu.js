@@ -1,14 +1,10 @@
 import styles from "@/app/page.module.css";
 import { Card } from "antd";
 import { RobotOutlined, CloseCircleFilled } from "@ant-design/icons";
+import useStore from "@/app/store";
 
 const LeftMenu = ({ toogleMenu }) => {
-  let currentPage = "";
-
-  if (typeof window !== "undefined") {
-    const pathParts = window.location.pathname.split("/");
-    currentPage = pathParts[pathParts.length - 1];
-  }
+  const currentPage = useStore((state) => state.currentPage);
 
   const Header = (
     <div style={{ display: "flex", justifyContent: "space-between" }}>

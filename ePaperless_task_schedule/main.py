@@ -40,7 +40,7 @@ async def periodic_upload_check():
             ocr = extract_text_from_document(file_path)
             #print('Text extracted: \n', ocr)
 
-            milisearch_result = post_values(file_name, sin, ocr, "N/A", tags, metadata, "N/A")
+            milisearch_result = post_values(new_file_name, sin, ocr, "N/A", tags, metadata, "N/A")
             print("Milisearch result: ", milisearch_result)
 
             result_file = await upload_to_s3(file_path, new_file_name)
@@ -53,7 +53,9 @@ async def periodic_upload_check():
             log(f'{thumbnail_filename} {result_thumb}')
 
             os.remove(file_path)
-            os.remove(thumbnail_path)
+
+            if not thumbnail_path.endswith("placeholder.jpg"):
+                os.remove(thumbnail_path)
             
         await asyncio.sleep(5)  # Check every 5 seconds
 
