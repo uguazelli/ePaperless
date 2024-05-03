@@ -5,8 +5,8 @@ from fastapi import FastAPI, UploadFile, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from util.auth import validate_api_key
-from util.aws_boto3 import get_objects, get_objects_with_presigned_urls
-
+from util.aws_boto3 import get_object_url
+from util.mili_search import search_with_pagination
 
 app = FastAPI()
 
@@ -20,7 +20,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",  # Allow requests from your React application
-    "*"
+    
 ]
 
 
@@ -42,21 +42,31 @@ def read_root():
 
 
 @app.get("/test-api-key")
-async def protected_endpoint(api_key: str = Depends(validate_api_key)):  # Use the dependency if you have auth.py
+async def protected_endpoint(api_key: str = Depends(validate_api_key)):
     return {"message": "Access granted!"}
 
 
 
-@app.get("/get_objects", response_model=List[Dict[str, str]])
-async def get_s3_objects():
-    objects = await get_objects()  # Call fetch_objects instead of get_objects
-    return objects
+@app.get("/object/{obj_name}")
+def get_object(obj_name: str):
+    return get_object(obj_name)
 
 
 
-@app.get("/objects", response_model=List[Dict[str, str]])
-def read_objects():
-    return get_objects_with_presigned_urls()
+@app.get("/objects")
+def get_objects(limit: int = 10, offset: int = 0, api_key: str = Depends(validate_api_key)):
+
+    mili_result = search_with_pagination(limit, offset)
+
+    for obj in mili_result:
+        obj['url'] = get_object_url(obj['doc_name'])
+        thumb = "thumbnail_" + obj['doc_name']
+        basename, extension = os.path.splitext(thumb)
+        thumb = basename + ".jpg"
+        obj['thumbnail_url'] = get_object_url(thumb)
+    
+    return mili_result
+
 
 
 

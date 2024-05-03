@@ -12,19 +12,11 @@ docker rm meilisearch
 # Run docker-compose up -d and redirect stderr to a temporary file
 docker-compose up -d 2> /tmp/docker_error.txt
 
-# Wait for all services to be healthy
-docker-compose wait
-
-curl -X POST -H 'Content-type: application/xml' --data-binary '@/schema.xml' http://localhost:8983/solr/ePaperless/schema
-
-
 echo "Postgres docker created"
-echo "Solr docker created"
-echo "'ePaperless' Solr core created"
+echo "Mile search docker created"
 
 
 # Starting the Backend
-
 
 # Change directory
 cd ../ePaperless_BE/ || {

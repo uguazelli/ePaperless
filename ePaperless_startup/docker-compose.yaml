@@ -7,17 +7,15 @@ services:
   #   ports:
   #     - 8080:8000
       
-  # solr:
-  #   container_name: solr
-  #   image: solr
-  #   ports:
-  #     - 8983:8983
-  #   volumes:
-  #     - solr_data:/opt/solr/server/solr/ePaperless
-  #   entrypoint:
-  #     - docker-entrypoint.sh
-  #     - solr-precreate
-  #     - ePaperless
+  meilisearch:
+    container_name: meilisearch
+    image: getmeili/meilisearch:v1.7
+    ports:
+      - 7700:7700
+    environment:
+      - MEILI_ENV=development
+    volumes:
+      - meili_data:/meili_data
 
   postgres:
     container_name: postgres
@@ -30,16 +28,9 @@ services:
       - POSTGRES_PASSWORD=VH3FJ!wKMtFiDv
       - POSTGRES_USER=ePaperless
       - POSTGRES_DB=epaperless_db
+    depends_on:
+      - meilisearch
     
-  meilisearch:
-    container_name: meilisearch
-    image: getmeili/meilisearch:v1.7
-    ports:
-      - 7700:7700
-    environment:
-      - MEILI_ENV=development
-    volumes:
-      - meili_data:/meili_data
 
 volumes:
   # solr_data:
