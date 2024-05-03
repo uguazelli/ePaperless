@@ -40,7 +40,7 @@ async def periodic_upload_check():
             ocr = extract_text_from_document(file_path)
             #print('Text extracted: \n', ocr)
 
-            milisearch_result = post_values(new_file_name, sin, ocr, "N/A", tags, metadata, "N/A")
+            milisearch_result = await post_values(new_file_name, sin, ocr, "N/A", tags, metadata, "N/A")
             print("Milisearch result: ", milisearch_result)
 
             result_file = await upload_to_s3(file_path, new_file_name)

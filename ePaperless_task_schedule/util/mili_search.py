@@ -1,26 +1,27 @@
-import meilisearch
+import meilisearch_python_sdk
 import os
 import requests
 import uuid
 import time
 import json
 
-# client = meilisearch.Client('http://localhost:7700', 'masterkey')
-client = meilisearch.Client('http://localhost:7700')
+# client = meilisearch_python_sdk.AsyncClient('http://localhost:7700', 'masterkey')
+client = meilisearch_python_sdk.AsyncClient("http://localhost:7700")
 
-def post_values(
-        file_name, 
-        sin="N/A", 
-        extracted_text="N/A", 
-        content_type="N/A", 
-        tags="N/A", 
-        meta="N/A", 
-        description="N/A"
-    ):
 
+async def post_values(
+    file_name,
+    sin="N/A",
+    extracted_text="N/A",
+    content_type="N/A",
+    tags="N/A",
+    meta="N/A",
+    description="N/A",
+):
     # An index is where the documents are stored.
-    index = client.index('epaperless')
-    data=[{
+    index = client.index("epaperless")
+    data = [
+        {
             "id": str(uuid.uuid4()),
             "doc_name": file_name,
             "sin": sin,
@@ -30,10 +31,9 @@ def post_values(
             "creator": "",
             "tags": tags,
             "meta": meta,
-            "description": description
-    }]
+            "description": description,
+        }
+    ]
 
     # If the index 'movies' does not exist, Meilisearch creates it when you first add the documents.
-    index.add_documents(data) # => { "uid": 0 }
-
-
+    await index.add_documents(data)  # => { "uid": 0 }
