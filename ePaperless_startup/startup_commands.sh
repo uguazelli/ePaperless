@@ -95,13 +95,8 @@ echo "...................,+,....................................................
 echo "...................,,....................................................................."
 
 
+fastapi dev main.py
 
-# Run uvicorn in the background with live reload
-# uvicorn main:app --reload &  # Append "&" to run in the background
-uvicorn main:app --reload || {
-  echo "failed stating uvicorn"
-  exit 1
-}
 echo "runnng uvicorn"
 
 # Inform the user of successful execution

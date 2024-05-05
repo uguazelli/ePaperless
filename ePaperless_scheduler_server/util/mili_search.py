@@ -1,9 +1,7 @@
 import meilisearch
-import os
-import requests
 import uuid
 import time
-import json
+
 
 # client = meilisearch.Client('http://localhost:7700', 'masterkey')
 client = meilisearch.Client('http://localhost:7700')

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useStore from "@/store";
+import Avataricon from "@/assets/img/avatar/avatar_icon.png";
 
 const MoonIcon = () => (
   <svg
@@ -193,16 +194,7 @@ const Navbar = () => {
             >
               <span className="sr-only">My profile</span>
               <span className="nav-user-img">
-                <picture>
-                  <source
-                    srcSet="./img/avatar/avatar-illustrated-02.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    src="./img/avatar/avatar-illustrated-02.png"
-                    alt="User name"
-                  />
-                </picture>
+                <img src={Avataricon} />
               </span>
             </button>
             <ul className="users-item-dropdown nav-user-dropdown dropdown">

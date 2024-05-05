@@ -1,6 +1,11 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
+  // CONSTANTS
+  EPAPERLESS_API_KEY: "5JdDbsLLgnG*pAi8t%qG6r6", //move to db
+  EPAPERLESS_BASE_URL: "http://127.0.0.1:8000",
+  EPAPERLESS_UPLOAD_URL: "/uploadfiles",
+
   // sidebar
   isSidebarVisible: true,
   isSmallScreen: false,
@@ -16,6 +21,15 @@ const useStore = create((set) => ({
   // docs
   documentsList: [],
   setDocumentsList: (value) => set((state) => ({ documentsList: value })),
+
+  // upload
+
+  sin: "",
+  tags: [],
+  meta: {},
+  setSin: (value) => set((state) => ({ sin: value })),
+  setTags: (value) => set((state) => ({ tags: value })),
+  setMeta: (value) => set((state) => ({ meta: value })),
 
   // AWS
   // aws_s3: "",

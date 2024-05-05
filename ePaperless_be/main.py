@@ -20,6 +20,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",  # Allow requests from your React application
+    "*"
     
 ]
 
@@ -29,8 +30,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
-    allow_headers=["X-API-Key"],
+    allow_methods=["*", "OPTIONS"],  # Add OPTIONS
+    allow_headers=["X-API-Key", "Authorization", "Content-Type"],
 )
 
 
@@ -70,8 +71,10 @@ def get_objects(limit: int = 10, offset: int = 0, api_key: str = Depends(validat
 
 
 
-@app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])
+# @app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])
+@app.post("/uploadfiles")
 async def create_upload_files(files: List[UploadFile]):
+    
     # Save the files to a folder
     folder = "uploads/"
     os.makedirs(folder, exist_ok=True)  # Ensure the folder exists, create if not
@@ -92,21 +95,6 @@ async def create_upload_files(files: List[UploadFile]):
             filenames.append(file.filename)
 
     return {"filenames": filenames}
-
-
-
-@app.get("/upload")
-async def main():
-    content = """
-        <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
-        <input name="files" type="file" multiple>
-        <input type="submit">
-        </form>
-        </body>
-    """
-    return HTMLResponse(content=content)
-
-
 
 
 
