@@ -71,8 +71,8 @@ def get_objects(limit: int = 10, offset: int = 0, api_key: str = Depends(validat
 
 
 
-# @app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])
-@app.post("/uploadfiles")
+@app.post("/uploadfiles", dependencies=[Depends(validate_api_key)])
+# @app.post("/uploadfiles")
 async def create_upload_files(files: List[UploadFile]):
     
     # Save the files to a folder

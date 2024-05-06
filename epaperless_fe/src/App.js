@@ -2,7 +2,7 @@ import "@/assets/css/style.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer";
 import HomePage from "@/templates/Home/HomePage";

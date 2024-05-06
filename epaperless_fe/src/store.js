@@ -8,11 +8,11 @@ const useStore = create((set) => ({
 
   // sidebar
   isSidebarVisible: true,
-  isSmallScreen: false,
+
+  setInitialVisibilityState: (value) =>
+    set((state) => ({ isSidebarVisible: value })),
   toggleSidebar: () =>
     set((state) => ({ isSidebarVisible: !state.isSidebarVisible })),
-  setIsSmallScreen: () =>
-    set((state) => ({ isSmallScreen: !state.isSmallScreen })),
 
   // dark theme
   isDarkMode: false, // Default value
@@ -26,7 +26,7 @@ const useStore = create((set) => ({
 
   sin: "",
   tags: [],
-  meta: {},
+  meta: "",
   setSin: (value) => set((state) => ({ sin: value })),
   setTags: (value) => set((state) => ({ tags: value })),
   setMeta: (value) => set((state) => ({ meta: value })),

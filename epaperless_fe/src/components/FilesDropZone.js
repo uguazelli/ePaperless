@@ -1,8 +1,10 @@
 import { Dropzone, FileMosaic } from "@files-ui/react";
 import useStore from "@/store";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FilesDropZone() {
+  const { t } = useTranslation();
   const {
     EPAPERLESS_API_KEY,
     EPAPERLESS_BASE_URL,
@@ -26,11 +28,10 @@ export default function FilesDropZone() {
 
     files.forEach((fileObj) => {
       // Change the filename
-      var filename = `@@SIN=${sin}~TAGS=${tags.join(
-        ","
-      )}~METADATA=${Object.entries(meta)
-        .map(([key, value]) => `${key}=${value}`)
-        .join(",")}~FILENAME=${fileObj.name}`;
+      let filename = `@@SIN=${sin}`;
+      filename += `~TAGS=${tags.replace(/\s+/g, "")}`;
+      filename += `~METADATA={${meta.replace(/\s+/g, "")}}`;
+      filename += `~FILENAME=${fileObj.name}`;
 
       const file = new File([fileObj.path], filename, {
         type: "application/octet-stream",
@@ -44,7 +45,7 @@ export default function FilesDropZone() {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${EPAPERLESS_API_KEY}`,
+            "X-API-Key": EPAPERLESS_API_KEY,
           },
           body: formData,
         }
@@ -69,7 +70,8 @@ export default function FilesDropZone() {
       onChange={updateFiles}
       value={files}
       style={{ height: "20rem" }}
-      label={"Click or drop the files here ❤️"}
+      // label={"Click or drop the files here ❤️"}
+      label={t("dropzoneMessage")}
       actionButtons={{
         position: "after",
         abortButton: {},
