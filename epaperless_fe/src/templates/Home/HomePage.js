@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FilesDropZone from "@/components/FilesDropZone";
+import FilesDropZone from "./FilesDropZone";
 import useStore from "@/store";
 
 const HomePage = () => {

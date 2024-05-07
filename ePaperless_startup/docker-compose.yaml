@@ -30,9 +30,19 @@ services:
       - POSTGRES_DB=epaperless_db
     depends_on:
       - meilisearch
-    
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=guazelli.ugo@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=28917010
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
 volumes:
-  # solr_data:
   postgres_data:
   meili_data:
+  pgadmin_data:
