@@ -4,7 +4,7 @@ const useStore = create((set) => ({
   // CONSTANTS
   EPAPERLESS_API_KEY: "5JdDbsLLgnG*pAi8t%qG6r6", //move to db
   EPAPERLESS_BASE_URL: "http://127.0.0.1:8000",
-  EPAPERLESS_UPLOAD_URL: "/uploadfiles",
+  EPAPERLESS_UPLOAD_URL: "/api/uploadfiles",
 
   // sidebar
   isSidebarVisible: true,
